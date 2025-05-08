@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
+import { useMyCustomContext } from "../hooks/custom";
 import { formatPrice } from "../utils/utils";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "../store/comfySlice";
 
 const SingleProduct = ({ fp }) => {
-  const dispatch = useDispatch();
+  const { addProductToCart } = useMyCustomContext();
   const {
     id,
     fields: { name, image, price, company },
@@ -20,7 +19,7 @@ const SingleProduct = ({ fp }) => {
             <i className="fa fa-search"></i>
           </Link>
           <button
-            onClick={() => dispatch(addProductToCart(fp))}
+            onClick={() => addProductToCart(fp)}
             className="product-cart-btn product-icon"
           >
             <i className="fa fa-shopping-cart"></i>

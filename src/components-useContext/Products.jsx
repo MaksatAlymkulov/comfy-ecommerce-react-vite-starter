@@ -2,6 +2,7 @@ import { useState } from "react";
 import { products } from "../assets/products-data";
 import PageHero from "./PageHero";
 import SingleProduct from "./SingleProduct";
+import { useMyCustomContext } from "../hooks/custom";
 
 function Products() {
   const [priceInputVal, setPriceInputVal] = useState(500);

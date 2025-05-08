@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setShowCart } from "../store/comfySlice";
+import { useMyCustomContext } from "../hooks/custom";
 
 function CartIcon() {
-  const cartProducts = useSelector((state) => state.comfyState.cartProducts);
-  const dispatch = useDispatch();
+  const { showCart, setShowCard, cartProducts } = useMyCustomContext();
 
   const totalQuantity = cartProducts.reduce((sum, cp) => {
     return sum + cp.count;
@@ -11,7 +9,7 @@ function CartIcon() {
 
   return (
     <div className="toggle-container">
-      <button onClick={() => dispatch(setShowCart())} className="toggle-cart">
+      <button onClick={() => setShowCard(!showCart)} className="toggle-cart">
         <i className="fa fa-shopping-cart"></i>
       </button>
       <span className="cart-item-count">{totalQuantity}</span>

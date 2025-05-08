@@ -2,15 +2,17 @@ import { useParams } from "react-router-dom";
 import { products } from "../assets/products-data";
 import PageHero from "./PageHero";
 import { formatPrice } from "../utils/utils";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "../store/comfySlice";
+import { useMyCustomContext } from "../hooks/custom";
 
 const ProductDetails = () => {
-  const dispatch = useDispatch();
+  const { addProductToCart } = useMyCustomContext();
   const { id } = useParams();
 
   const product = products.find((product) => product.id === id);
+
   const { name, image, company, colors, price } = product.fields;
+
+  console.log(product);
 
   return (
     <>
@@ -48,7 +50,7 @@ const ProductDetails = () => {
                 trust fund hashtag kinfolk microdosing gochujang live-edge
               </p>
               <button
-                onClick={() => dispatch(addProductToCart(product))}
+                onClick={() => addProductToCart(product)}
                 className="addToCartBtn btn"
               >
                 add to cart

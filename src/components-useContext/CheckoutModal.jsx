@@ -1,16 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setShowCheckout } from "../store/comfySlice";
+import { useMyCustomContext } from "../hooks/custom";
 
 function CheckoutModal() {
-  const showCheckout = useSelector((state) => state.comfyState.showCheckout);
-  const dispatch = useDispatch();
+  const { showCheckout, setShowCheckout } = useMyCustomContext();
 
   const toogle = showCheckout ? "checkout-overlay show" : "checkout-overlay";
   return (
     <div className={toogle}>
       <aside className="checkout">
         <button
-          onClick={() => dispatch(setShowCheckout())}
+          onClick={() => setShowCheckout(!showCheckout)}
           className="checkout-close"
         >
           <i className="fa fa-times"></i>

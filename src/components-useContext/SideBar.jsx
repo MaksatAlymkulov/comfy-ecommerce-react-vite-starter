@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowSideBar } from "../store/comfySlice";
+import { useMyCustomContext } from "../hooks/custom";
 
 function SideBar() {
-  const showSideBar = useSelector((state) => state.comfyState.showSideBar);
-  const dispatch = useDispatch();
+  const { showSideBar, setShowSideBar } = useMyCustomContext();
 
   const toggle = showSideBar ? "sidebar-overlay show" : "sidebar-overlay";
   return (
     <div className={toggle}>
       <aside className="sidebar">
         <button
-          onClick={() => dispatch(setShowSideBar())}
+          onClick={() => setShowSideBar(!showSideBar)}
           className="sidebar-close"
         >
           <i className="fa fa-times"></i>
@@ -22,7 +20,7 @@ function SideBar() {
             <Link
               to="/"
               className="sidebar-link"
-              onClick={() => dispatch(setShowSideBar())}
+              onClick={() => setShowSideBar(!showSideBar)}
             >
               <i className="fa fa-home fa-fw"></i>
               home
@@ -32,7 +30,7 @@ function SideBar() {
             <Link
               to="/products"
               className="sidebar-link"
-              onClick={() => dispatch(setShowSideBar())}
+              onClick={() => setShowSideBar(!showSideBar)}
             >
               <i className="fa fa-couch fa-fw"></i>
               products
@@ -42,7 +40,7 @@ function SideBar() {
             <Link
               to="/about"
               className="sidebar-link"
-              onClick={() => dispatch(setShowSideBar())}
+              onClick={() => setShowSideBar(!showSideBar)}
             >
               <i className="fa fa-book fa-fw"></i>
               about

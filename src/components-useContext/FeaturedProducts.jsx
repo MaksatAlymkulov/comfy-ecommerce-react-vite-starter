@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SingleProduct from "./SingleProduct";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsLoading } from "../store/comfySlice";
+import { useMyCustomContext } from "../hooks/custom";
 
 function FeaturedProducts() {
-  const isLoading = useSelector((state) => state.comfyState.isLoading);
-  const featuredProducts = useSelector(
-    (state) => state.comfyState.featuredProducts
-  );
-  const dispatch = useDispatch();
+  const { isLoading, setIsLoading, featuredProducts } = useMyCustomContext();
+
   useEffect(() => {
     setTimeout(() => {
-      dispatch(setIsLoading());
+      setIsLoading(true);
     }, 500);
   }, []);
 

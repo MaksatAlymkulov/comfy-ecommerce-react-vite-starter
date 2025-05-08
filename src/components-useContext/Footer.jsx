@@ -1,11 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useMyCustomContext } from "../hooks/custom";
 import { formatPrice } from "../utils/utils";
-import { setShowCheckout } from "../store/comfySlice";
 
 function Footer() {
-  const cartProducts = useSelector((state) => state.comfyState.cartProducts);
-  const dispatch = useDispatch();
-
+  const { cartProducts, showCheckout, setShowCheckout } = useMyCustomContext();
   const totalPrice = cartProducts.reduce((sum, cp) => {
     return sum + cp.fields.price;
   }, 0);
@@ -20,7 +17,7 @@ function Footer() {
         total : {formatPrice(totalPrice * totalQuantity)}
       </h3>
       <button
-        onClick={() => dispatch(setShowCheckout())}
+        onClick={() => setShowCheckout(!showCheckout)}
         className="cart-checkout btn"
       >
         checkout
